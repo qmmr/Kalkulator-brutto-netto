@@ -1,0 +1,8 @@
+[{
+  "emerytalna": 0.0976,
+  "rentowa"   : 0.015,
+  "chorobowa" : 0.0245,
+  "zdrowotne" : 0.09,
+  "podatkowe" : 0.0775,
+  "incomeCost": 111.25
+}]

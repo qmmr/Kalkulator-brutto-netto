@@ -1,5 +1,30 @@
 <div class="grid-fluid">
   <h5>brutto - netto</h5>
-  <input type="text" class="input-xlarge" id="amount" ng-model="amount" ng-model-instant>
-  <button class="btn btn-primary" ng-click="count()">Oblicz</button>
+<!-- http://www.wynagrodzenia.pl/kalkulator_oblicz.php -->
+<!-- http://www.infor.pl/kalkulatory/brutto_netto.html#wynikiform -->
+<!-- http://www.wskazniki.gofin.pl/8,223,1,przyklad-obliczenia-wynagrodzenia-netto-i-jego-obciazen.html -->
+  <div class="control-group form-horizontal">
+    <label class="control-label" for="input01">Text input</label>
+    <div class="input-append controls">
+      <input type="text" class="input-xlarge" id="amount" placeholder="Podaj wynagrodzenie brutto" ng-model="amount" ng-model-instant><button class="btn btn-primary" ng-click="count()">Oblicz</button>
+    </div>
+  </div>
+
+  <div class="">
+    <table class="table table-stripped table-bordered">
+      <caption>Składniki</caption>
+      <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Kwota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="o in data">
+          <td>{{o.nazwa}}</td>
+          <td>{{o.kwota}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
