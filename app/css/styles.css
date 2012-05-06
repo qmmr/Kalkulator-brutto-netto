@@ -1,0 +1,141 @@
+
+
+.nav .icon-chevron-right {
+  margin: 2px 5px 0px 5px;
+}
+
+.navbar-fixed-top .brand {
+  padding-right: 0;
+  padding-left: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: bold;
+  color: #0088cc;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+  -webkit-transition: all .2s linear;
+     -moz-transition: all .2s linear;
+          transition: all .2s linear;
+}
+
+.navbar-fixed-top .brand:hover {
+  text-decoration: none;
+  color: #005580;
+}
+
+.table-captioned caption {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 5px 0 0;
+  border: 1px solid hsl(0, 0%, 87%);
+  padding: 10px;
+  border-bottom: none;
+  text-shadow: 0 1px 1px #fff;
+  color: hsl(0, 0%, 27%);
+}
+
+.table-captioned {
+  border-radius: 0 0 4px 4px;
+}
+
+
+
+
+/* table results */
+.table-results th.name {
+  width: 60%;
+  text-align: center;
+}
+
+.table-results th.amount {
+  width: 40%;
+}
+
+.table-results .amount, .table-results th {
+  text-align: center;
+}
+
+.table-results th.row2 {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table-results td {
+  text-align: center;
+}
+
+
+/* table months */
+.table-months th {
+  width: 25%;
+  text-align: center;
+}
+
+.table-months td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table-months td input {
+  margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @media */
+@media (max-width: 480px) {
+  /*body { background-color: hsl(0, 0%, 10%) }*/
+  .row-fluid {
+    width: 99%;
+    margin: .5% auto;
+    padding: 0;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .row-fluid {
+    width: 90%;
+    margin: 1% auto;
+    padding: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .row-fluid {
+    width: 80%;
+    margin: 5px auto;
+    padding-top: 0;
+    /*background-color: hsl(0, 0%, 50%);*/
+  }
+  /*body { background-color: hsl(0, 0%, 30%) }*/
+}
+
+@media (max-width: 979px) {}
+
+@media (min-width: 980px) {
+  .row-fluid {
+    padding-top: 50px;
+    width: 70%;
+    margin: 10px auto;
+    /*background-color: hsl(0, 0%, 70%);*/
+  }
+}
+
+@media (min-width: 1200px) {
+  .row-fluid {
+    /*background-color: hsl(0, 0%, 90%);*/
+  }
+}
