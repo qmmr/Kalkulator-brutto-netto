@@ -1,4 +1,4 @@
-<div class="bn-wrapper" ng-controller="BruttoNettoController">
+<div class="bn-wrapper">
   <h3 class="pagination-centered">Kalkulator wynagrodzenia brutto - netto</h3>
 
   <h2>{{ monthValues }}</h2>
@@ -7,12 +7,12 @@
   <!-- http://www.infor.pl/kalkulatory/brutto_netto.html#wynikiform -->
   <!-- http://www.wskazniki.gofin.pl/8,223,1,przyklad-obliczenia-wynagrodzenia-netto-i-jego-obciazen.html -->
 
-  <form action="" name="bn-form" id="bn-form">
+  <form name="bruttoNettoForm" id="bruttoNettoForm">
     <fieldset>
       <!-- <legend>Kwota wynagrodzenia Brutto</legend> -->
       <div class="control-group form-horizontal">
         <div class="input-append controls">
-          <input type="text" class="input-xlarge" id="amount" tabindex=1 placeholder="Podaj wynagrodzenie brutto" ng-model="amount" ng-model-instant><input type="submit" class="btn btn-primary" tabindex=2 ng-click="count($parent)" value="Oblicz">
+          <input type="text" class="input-xlarge" id="amount" tabindex=1 placeholder="Podaj wynagrodzenie brutto" ng-change="updateMonths()" ng-model="amount" ng-model-instant><input type="submit" class="btn btn-primary" tabindex=2 ng-click="submit()" value="Oblicz">
         </div>
       </div>
     </fieldset>
@@ -74,7 +74,7 @@
           <tr>
             <td>Kwiecień</td>
             <td><input class="input-medium" type="text" value="" tabindex=6 id="m4" ng-model="monthValues[3]"></td>
-            <td>Październiki</td>
+            <td>Październik</td>
             <td><input class="input-medium" type="text" value="" tabindex=12 id="m10" ng-model="monthValues[9]"></td>
           </tr>
           <tr>

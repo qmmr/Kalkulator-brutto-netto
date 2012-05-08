@@ -1,6 +1,35 @@
 'use strict';
 
-/* Controllers */
+// BruttoNetto class
+function BruttoNetto(brutto, options) {
+  this._options = options || {};
+  // kwota brutto
+  this._brutto = brutto;
+}
+
+/**
+  składki na ubezpieczenie społeczne, finansowane przez pracownika
+  w tym składka:
+  emerytalna 9,76%
+  rentowa 1,5%
+  chorobowa 2,45%
+*/
+BruttoNetto.prototype.countSocialInsurance = function() {
+  var results;
+
+  results = {
+    emerytalna: round(brutto * $scope.amounts.emerytalna, 2),
+    rentowa   : round(brutto * $scope.amounts.rentowa, 2),
+    chorobowa : round(brutto * $scope.amounts.chorobowa, 2)
+  };
+
+  reduced = _(results).reduce(function(memo, num) { return memo + num; });
+
+  results.total = round(reduced, 2);
+
+  return results;
+}
+
 function round (value, precision, mode) {
     // Returns the number rounded to specified precision
     //
@@ -57,8 +86,10 @@ function round (value, precision, mode) {
     return (isHalf ? value : Math.round(value)) / m;
 }
 
+/* Controllers */
 function BruttoNettoController ($scope, $http) {
   var data = {};
+  var months = ["Styczeń","Luty","Marzec","Kwiecień","Maj","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"];
 
   $http.get('data/amounts.json').success(function(data) {
     $scope.amounts = data[0];
@@ -77,23 +108,65 @@ function BruttoNettoController ($scope, $http) {
   // watch if user wants to count each month independently
   $scope.monthly = 'true';
 
+  // console.log(bruttoNettoForm);
+
   // when user chooses to count each month independetly
   $scope.eachMonth = function () {
-    var a = $scope.amount;
+    var a = $scope.amount || 0;
 
     $scope.monthValues = ($scope.monthly === 'true') ? [] : [a, a, a, a, a, a, a, a, a, a, a, a];
     console.log($scope.monthValues);
+  };
+
+  $scope.updateMonths = function() {
+    for (var i = 0; i < months.length; i++) {
+      $scope.monthValues[i] = $scope.amount;
+    }
   }
 
-  $scope.count = function () {
-    // clear any prev calculations
-    $scope.data = [];
+  $scope.submit = function() {
+    var i;
 
     // return false if no input or NaN
     if ($scope.amount === '' || isNaN($scope.amount)) {
       alert('wrong input');
       return false;
     }
+
+    // if user did not choose to count each month independently
+    if ($scope.monthly === 'true') {
+      // clear the previous results
+      $scope.monthValues = [];
+      // append amount from input to array
+      $scope.monthValues.push($scope.amount);
+      // count and show results
+      $scope.count();
+    } else {
+      // for (i = 0; i < months.length; i++) {
+      //   console.log(months[i]);
+      // }
+    }
+
+    if ($scope.monthValues.length > 0) {
+      for (i = 0; i < $scope.monthValues.length; i++) {
+        console.log($scope.monthValues[i]);
+      }
+    }
+
+    // if ($scope.monthValues.length === 0) {
+    //   alert('empty');
+    // }
+
+    // if ($scope.monthValues.length === 1) {
+    //   alert('count for one month');
+    // } else {
+    //   alert('count for ' + $scope.monthValues.length + ' months');
+    // }
+  };
+
+  $scope.count = function () {
+    // clear any prev calculations
+    $scope.data = [];
 
     // store each piece of calculation in object
     data.brutto           = Number($scope.amount);
@@ -142,23 +215,22 @@ function BruttoNettoController ($scope, $http) {
 
   // podstawa wymiaru składki na ubezpieczenie zdrowotne (brutto - socialInsurance.total)
   function getBaseForHealthInsurance() {
-    // return Number(data.brutto - data.socialInsurance.total);
     return data.brutto - data.socialInsurance.total;
   }
 
   // składka na ubezpieczenie zdrowotne do pobrania z wynagrodzenia (data.baseHealth x 9%)
   function getAmountForHealthInsurance() {
-    return Number((data.baseHealth * $scope.amounts.zdrowotne).toFixed(2));
+    return round((data.baseHealth * $scope.amounts.zdrowotne), 2);
   }
 
   // składka na ubezpieczenie zdrowotne do odliczenia od podatku (data.baseHealth x 7,75%)
   function getAmountForHealthInsuranceToTax() {
-    return Number((data.baseHealth * $scope.amounts.podatkowe).toFixed(2));
+    return round((data.baseHealth * $scope.amounts.podatkowe), 2);
   }
 
   // podstawa obliczenia zaliczki na podatek dochodowy, po zaokrągleniu do pełnych złotych (brutto - $scope.amounts.incomeCost - socialInsurance.total)
   function getBaseForIncomeTax() {
-    return Number((data.brutto - $scope.amounts.incomeCost - data.socialInsurance.total).toFixed());
+    return Math.floor(data.brutto - $scope.amounts.incomeCost - data.socialInsurance.total);
   }
 
   // zaliczka na podatek dochodowy przed odliczeniem składki zdrowotnej [(baseForIncomeTax x 18%) - 46,33 zł]
