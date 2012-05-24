@@ -1,48 +1,24 @@
 <div class="bn-wrapper">
-  <h3 class="pagination-centered">Kalkulator wynagrodzenia brutto - netto</h3>
+  <h2 class="pageTitle">Kalkulator wynagrodzenia brutto - netto</h2>
 
-  <h2>{{ monthValues }}</h2>
+  <!-- <h2>{{ monthValues }}</h2> -->
 
   <!-- http://www.wynagrodzenia.pl/kalkulator_oblicz.php -->
   <!-- http://www.infor.pl/kalkulatory/brutto_netto.html#wynikiform -->
   <!-- http://www.wskazniki.gofin.pl/8,223,1,przyklad-obliczenia-wynagrodzenia-netto-i-jego-obciazen.html -->
 
   <form name="bruttoNettoForm" id="bruttoNettoForm">
-    <fieldset>
-      <!-- <legend>Kwota wynagrodzenia Brutto</legend> -->
-      <div class="control-group form-horizontal">
-        <div class="input-append controls">
-          <input type="text" class="input-xlarge" id="amount" tabindex=1 placeholder="Podaj wynagrodzenie brutto" ng-change="updateMonths()" ng-model="amount" ng-model-instant><input type="submit" class="btn btn-primary" tabindex=2 ng-click="submit()" value="Oblicz">
-        </div>
-      </div>
-    </fieldset>
 
     <fieldset>
-      <select class="span5">
-        <option>2012</option>
-        <option>2011</option>
-        <option>2010</option>
-        <option>2009</option>
-        <option>2008</option>
-      </select>
-    </fieldset>
-
-    <fieldset>
-      <div class="control-group">
-        <label class ="control-label">Stałe wynagrodzenie w każdym miesiącu:</label>
-        <div class="controls">
-          <label class="radio">
-            <input type="radio" name="optionsRadios" ng-model="monthly" ng-click="eachMonth()" id="radio1" value=true>
-            Tak
-          </label>
-          <label class="radio">
-            <input type="radio" name="optionsRadios" ng-model="monthly" ng-click="eachMonth()" id="radio2" value=false>
-            Nie
-          </label>
+      <div class="payment">
+        <h4>Stałe wynagrodzenie w każdym miesiącu:</h4>
+        <div class="btn-group singleMonthContainer" data-toggle="buttons-radio">
+          <button class="btn btn-primary active" ng-click="eachMonth()" id="radio1" data-single=true>Tak</button>
+          <button class="btn btn-primary" ng-click="eachMonth()" id="radio2" data-single=false>Nie</button>
         </div>
       </div>
 
-      <table id="monthlyTable" class="table table-stripped table-bordered table-captioned table-months" ng-hide="monthly">
+      <table id="monthlyTable" class="table table-stripped table-bordered table-captioned table-months" style="display: none">
         <caption>Wynagrodzenie w każdym miesiącu</caption>
         <thead>
           <tr>
@@ -55,53 +31,84 @@
         <tbody>
           <tr>
             <td>Styczeń</td>
-            <td><input class="input-medium" type="text" value="" tabindex=3 id="m1" ng-model="monthValues[0]"></td>
+            <td class="inputHolder"><input class="input-medium" type="text" value="" tabindex=3 id="m1" ng-model="monthValues[0]"></td>
             <td>Lipiec</td>
-            <td><input class="input-medium" type="text" value="" tabindex=9 id="m7" ng-model="monthValues[6]"></td>
+            <td class="inputHolder"><input class="input-medium" type="text" value="" tabindex=9 id="m7" ng-model="monthValues[6]"></td>
           </tr>
           <tr>
             <td>Luty</td>
-            <td><input class="input-medium" type="text" value="" tabindex=4 id="m2" ng-model="monthValues[1] "></td>
+            <td class="inputHolder"><input class="input-medium" type="text" value="" tabindex=4 id="m2" ng-model="monthValues[1] "></td>
             <td>Sierpień</td>
-            <td><input class="input-medium" type="text" value="" tabindex=10 id="m8" ng-model="monthValues[7]"></td>
+            <td class="inputHolder"><input class="input-medium" type="text" value="" tabindex=10 id="m8" ng-model="monthValues[7]"></td>
           </tr>
           <tr>
             <td>Marzec</td>
-            <td><input class="input-medium" type="text" value="" tabindex=5 id="m3" ng-model="monthValues[2]"></td>
+            <td class="inputHolder"><input class="input-medium" type="text" value="" tabindex=5 id="m3" ng-model="monthValues[2]"></td>
             <td>Wrzesień</td>
-            <td><input class="input-medium" type="text" value="" tabindex=11 id="m9" ng-model="monthValues[8]"></td>
+            <td class="inputHolder"><input class="input-medium" type="text" value="" tabindex=11 id="m9" ng-model="monthValues[8]"></td>
           </tr>
           <tr>
             <td>Kwiecień</td>
-            <td><input class="input-medium" type="text" value="" tabindex=6 id="m4" ng-model="monthValues[3]"></td>
+            <td class="inputHolder"><input class="input-medium" type="text" value="" tabindex=6 id="m4" ng-model="monthValues[3]"></td>
             <td>Październik</td>
-            <td><input class="input-medium" type="text" value="" tabindex=12 id="m10" ng-model="monthValues[9]"></td>
+            <td class="inputHolder"><input class="input-medium" type="text" value="" tabindex=12 id="m10" ng-model="monthValues[9]"></td>
           </tr>
           <tr>
             <td>Maj</td>
-            <td><input class="input-medium" type="text" value="" tabindex=7 id="m5" ng-model="monthValues[4]"></td>
+            <td class="inputHolder"><input class="input-medium" type="text" value="" tabindex=7 id="m5" ng-model="monthValues[4]"></td>
             <td>Listopad</td>
-            <td><input class="input-medium" type="text" value="" tabindex=13 id="m11" ng-model="monthValues[10]"></td>
+            <td class="inputHolder"><input class="input-medium" type="text" value="" tabindex=13 id="m11" ng-model="monthValues[10]"></td>
           </tr>
           <tr>
             <td>Czerwiec</td>
-            <td><input class="input-medium" type="text" value="" tabindex=8 id="m6" ng-model="monthValues[5]"></td>
+            <td class="inputHolder"><input class="input-medium" type="text" value="" tabindex=8 id="m6" ng-model="monthValues[5]"></td>
             <td>Grudzień</td>
-            <td><input class="input-medium" type="text" value="" tabindex=14 id="m12" ng-model="monthValues[11]"></td>
+            <td class="inputHolder"><input class="input-medium" type="text" value="" tabindex=14 id="m12" ng-model="monthValues[11]"></td>
           </tr>
         </tbody>
       </table>
 
     </fieldset>
+    <fieldset>
+      <!-- <legend>Kwota wynagrodzenia Brutto</legend> -->
+      <div class="controls">
+        <div class="input-append">
+          <input type="text" class="input-xlarge" name="amount" id="amount" tabindex=1
+          placeholder="Podaj wynagrodzenie brutto"
+          ng-change="updateValues()"
+          ng-model="amount"
+          ng-pattern="/\d{3,}/"
+          required
+          ><input type="submit" id="submit" class="btn btn-primary" tabindex=2 ng-click="submit()" value="Oblicz">
+        </div>
+        <div class="errors" ng-show="bruttoNettoForm.amount.$dirty && bruttoNettoForm.amount.$invalid">
+          <span ng-show="bruttoNettoForm.amount.$error.pattern">Proszę wpisać kwotę wynagrodzenia.</span>
+          <span ng-show="bruttoNettoForm.amount.$error.required">To pole jest wymagane.</span>
+          <!-- <span ng-show="bruttoNettoForm.amount.$error.required"><i class="icon-exclamation-sign"></i></span> -->
+        </div>
+      </div>
+    </fieldset>
+
+    <button id="modifyInput" class="btn btn-primary" style="display: none">Modyfikuj dane</button>
+
+<!--
+    <fieldset>
+      <select class="span5">
+        <option>2012</option>
+        <option>2011</option>
+        <option>2010</option>
+        <option>2009</option>
+        <option>2008</option>
+      </select>
+    </fieldset>
+ -->
   </form>
 
   <div class="results-container">
-    <table class="table table-stripped table-bordered table-captioned table-results" ng-show="showResults">
+    <table id="singleMonthResult" class="table table-stripped table-bordered table-captioned table-results" style="display: none">
       <caption>Koszty pracownika</caption>
       <thead>
         <tr>
-          <!-- <th class="name">Nazwa</th> -->
-          <!-- <th class="amount">Kwota</th> -->
           <th rowspan="2" class="row2">Brutto</th>
           <th colspan="4">Ubezpieczenie</th>
           <th rowspan="2" class="row2" style="width: 12%">Podstawa opodatkowania</th>
@@ -117,17 +124,57 @@
       </thead>
       <tbody>
         <tr ng-repeat="o in data">
-          <td>{{ o.brutto }}</td>
-          <td>{{ o.socialInsurance.emerytalna }}</td>
-          <td>{{ o.socialInsurance.rentowa }}</td>
-          <td>{{ o.socialInsurance.chorobowa }}</td>
+          <td>{{ o.gross }}</td>
+          <td>{{ o.insurance.pension }}</td>
+          <td>{{ o.insurance.disability }}</td>
+          <td>{{ o.insurance.sickness }}</td>
           <td>{{ o.amountForHI }}</td>
-          <!-- <td>{{ o.socialInsurance.total }}</td> -->
           <td>{{ o.baseForIncomeTax }}</td>
           <td>{{ o.advanceFIT }}</td>
-          <td>{{ o.salary }}</td>
-          <!-- <td class="amount alert-info">{{ o.kwota }}&nbsp;PLN</td> -->
-
+          <td class="net">{{ o.net }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table id="multipleMonthsResult" class="table table-stripped table-bordered table-captioned table-results" style="display: none">
+      <caption>Koszty pracownika</caption>
+      <thead>
+        <tr>
+          <th rowspan="2" class="row2">Miesiąc</th>
+          <th rowspan="2" class="row2">Brutto</th>
+          <th colspan="4">Ubezpieczenie</th>
+          <th rowspan="2" class="row2" style="width: 12%">Podstawa opodatkowania</th>
+          <th rowspan="2" class="row2" style="width: 12%">Zaliczka na PIT</th>
+          <th rowspan="2" class="row2" style="width: 16%">Netto</th>
+        </tr>
+        <tr>
+          <th>emerytalne</th>
+          <th>rentowe</th>
+          <th>chorobowe</th>
+          <th>zdrowotne</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="o in data">
+          <td>{{ months[$index] }}</td>
+          <td>{{ o.gross }}</td>
+          <td>{{ o.insurance.pension }}</td>
+          <td>{{ o.insurance.disability }}</td>
+          <td>{{ o.insurance.sickness }}</td>
+          <td>{{ o.amountForHI }}</td>
+          <td>{{ o.baseForIncomeTax }}</td>
+          <td>{{ o.advanceFIT }}</td>
+          <td>{{ o.net }}</td>
+        </tr>
+        <tr>
+          <td>Suma</td>
+          <td>{{ sum.gross }}</td>
+          <td>{{ sum.pension }}</td>
+          <td>{{ sum.disability }}</td>
+          <td>{{ sum.sickness }}</td>
+          <td>{{ sum.health }}</td>
+          <td>{{ sum.base }}</td>
+          <td>{{ sum.advance }}</td>
+          <td>{{ sum.net }}</td>
         </tr>
       </tbody>
     </table>

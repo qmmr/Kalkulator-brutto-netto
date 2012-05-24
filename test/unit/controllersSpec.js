@@ -31,4 +31,16 @@ describe('BruttoNettoController', function(){
     expect(scope.monthly).toBe('true');
   });
 
+  // input
+  // it('should initialize to model', function() {
+  //  expect(binding('amount')).toEqual('');
+  //  expect(binding('bruttoNettoForm.amount.$valid')).toEqual('false');
+  // });
+
+  // it('should be invalid if empty', function() {
+  //  input('amount').enter('');
+  //  expect(binding('amount')).toEqual('');
+  //  expect(binding('bruttoNettoForm.amount.$valid')).toEqual('false');
+  // });
+
 });

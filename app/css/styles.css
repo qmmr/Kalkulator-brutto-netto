@@ -75,11 +75,32 @@
   vertical-align: middle;
 }
 
+.table-months td.inputHolder {
+  padding: 0;
+}
+
 .table-months td input {
+  border: none;
+  font-size: 150%;
+  font-weight: bold;
+  height: 100%;
   margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
 }
 
 
+.payment {
+  margin: 15px 0;
+}
+
+.payment h4 {
+  float: left;
+  height: 28px;
+  line-height: 28px;
+  margin-right: 10px;
+}
 
 
 
